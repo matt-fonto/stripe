@@ -1,5 +1,7 @@
 # Integrating Supabase and Stripe
 
+[Source video](https://www.youtube.com/watch?v=VHAOKbpMat0)
+
 1. User management with supabase auth
 
 - Handle sign-up/sign-in via Supabase
@@ -131,8 +133,11 @@ export async function POST(request: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SINGING_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET
     );
+
+    // event.type is very important
+    // it is what will define how you handle that
   } catch (error) {
     console.log(error);
     return new NextResponse("webhook error", { status: 400 });
@@ -142,7 +147,17 @@ export async function POST(request: Request) {
     event.type === "checkout.session.completed" &&
     event.data.object.payment.status === "paid"
   ) {
+    const metadata = event.data.object.metadata;
+    const userId = metadata.userId;
+
+    if (metadata) {
+      // update the user field
+    }
   }
+
+  revalidatePath("/", "layout");
+
+  return new NextResponse(null, { status: 200 });
 }
 ```
 
