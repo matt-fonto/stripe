@@ -1,5 +1,7 @@
 # Next.js & Stripe
 
+[Video 1](https://www.youtube.com/watch?v=2JDKquIMJws)
+
 1. Setup Stripe product
 
    - Go to stripe dashboard
@@ -52,3 +54,8 @@
   - use:
     - update `status = "canceled"`
     - optionally offer reactivation or downgrade logic
+
+[Video 2](https://www.youtube.com/watch?v=I7CFD99sp1g)
+
+- [Vercel Subscription Starter](https://vercel.com/templates/next.js/subscription-starter)
+- [Vercel subs. starter Github](https://github.com/vercel/nextjs-subscription-payments)
